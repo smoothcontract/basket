@@ -20,19 +20,31 @@ describe Basket::Catalog do
     subject { described_class.new }
 
     it 'loads YAML file' do
-      expect(subject.products).to be_a Hash
+      expect(subject.products).to be_an Array
     end
   end
 
-  describe '[]' do
+  describe '#[]' do
     subject { described_class.new }
 
     it 'retrieves products by code symbol' do
-      expect(subject[:foo]).to be_a Hash
+      expect(subject[:foo]).to be_a Basket::Product
     end
 
     it 'retrieves products by code string' do
-      expect(subject['foo']).to be_a Hash
+      expect(subject['foo']).to be_a Basket::Product
+    end
+
+    it 'has correct product code' do
+      expect(subject[:foo].code).to eq :foo
+    end
+
+    it 'has correct product name' do
+      expect(subject[:foo].name).to eq 'Stuff'
+    end
+
+    it 'has correct product price' do
+      expect(subject[:bar].price).to eq 9.99
     end
 
     it 'returns nil for unknown products' do
