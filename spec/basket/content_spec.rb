@@ -1,48 +1,57 @@
 require 'spec_helper'
 
 describe Basket::Content do
-  describe '.initialize' do
-    subject { described_class.new }
+  let(:catalog) { Basket::Catalog.new }
+  let(:content) { described_class.new(catalog) }
 
+  describe '.initialize' do
     it 'sets empty list of items' do
-      expect(subject.items).to be_empty
+      expect(content.items).to be_empty
+    end
+  end
+
+  describe '#add_item' do
+    subject { content.items }
+
+    it 'adds an item' do
+      content.add_item(:s01)
+      expect(subject.count).to eq 1
+    end
+
+    it 'fetches product from catalog' do
+      content.add_item(:s01)
+      expect(subject.first).to be_a Basket::Product
+    end
+
+    it 'raises exception for unknown product code' do
+      expect { content.add_item(:foo) }.to raise_error(Basket::InvalidProduct)
     end
   end
 
   describe '#add_items' do
-    let(:basket) { described_class.new }
+    subject { content.items }
 
-    it 'raises an exception when adding an unknown item'
-    it 'adds the same item multiple times'
+    it 'adds a single item' do
+      content.add_items(:s01)
+      expect(subject.count).to eq 1
+    end
+
+    it 'adds multiple items' do
+      content.add_items(:s01, :b01)
+      expect(subject.count).to eq 2
+    end
   end
 
   describe '#total_price' do
-    let(:basket) { described_class.new }
-
-    subject { basket.total_price }
+    subject { content.total_price }
 
     it 'returns total price when empty' do
       expect(subject).to eq 0.0
     end
-      
-    it 'returns total for socks and blouse' do
-      basket.add_items(:s01, :b01)
-      expect(subject).to eq 37.85
-    end
 
-    it 'returns total for two pairs of jeans' do
-      basket.add_items(:j01, :j01)
-      expect(subject).to eq 54.37
-    end
-
-    it 'returns total for jeans and a blouse' do
-      basket.add_items(:j01, :b01)
-      expect(subject).to eq 60.85
-    end
-
-    it 'returns total for lots of items' do
-      basket.add_items(:s01, :s01, :j01, :j01, :j01)
-      expect(subject).to eq 98.27
+    it 'returns total price with items' do
+      content.add_items(:s01, :b01)
+      expect(subject).to be > 0.0
     end
   end
 end
