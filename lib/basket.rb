@@ -2,6 +2,7 @@ require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
 
+require_relative 'basket/basket'
 require_relative 'basket/catalog'
 require_relative 'basket/content'
 require_relative 'basket/delivery'

@@ -21,5 +21,9 @@ module Basket
     def total_price
       @items.sum(&:price).round(2)
     end
+
+    def empty?
+      @items.empty?
+    end
   end
 end
