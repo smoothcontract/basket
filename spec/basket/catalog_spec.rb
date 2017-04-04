@@ -28,11 +28,11 @@ describe Basket::Catalog do
     subject { described_class.new }
 
     it 'retrieves products by code symbol' do
-      expect(subject[:foo]).to be_a Basket::Product
+      expect(subject[:foo]).to be_a Hash
     end
 
     it 'retrieves products by code string' do
-      expect(subject['foo']).to be_a Basket::Product
+      expect(subject['foo']).to be_a Hash
     end
 
     it 'returns nil for unknown products' do

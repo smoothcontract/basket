@@ -1,20 +1,21 @@
 require 'yaml'
 
-class Basket::Catalog
-  attr_reader :products
+module Basket
+  class Catalog
+    attr_reader :products
 
-  def initialize
-    @products = YAML.load(File.read(filename))
-  end
+    def initialize
+      @products = YAML.load(File.read(filename))
+    end
 
-  def [](code)
-    details = @products[code.to_s]
-    details ? Basket::Product.new(details) : nil
-  end
+    def [](code)
+      @products[code.to_s]
+    end
 
-  private
+    private
 
-  def filename
-    File.join(Dir.getwd, 'config', 'products.yml')
+    def filename
+      File.join(Dir.getwd, 'config', 'products.yml')
+    end
   end
 end

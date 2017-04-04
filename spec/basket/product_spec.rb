@@ -51,5 +51,13 @@ describe Basket::Product do
         expect(subject.price).to eq 7.95
       end
     end
+
+    context 'unknown' do
+      let(:product_code) { :foo }
+
+      it 'raises exception' do
+        expect { subject }.to raise_error(Basket::InvalidProduct)
+      end
+    end
   end
 end
