@@ -1,7 +1,7 @@
 module Basket
   module Discounts
+    # Half of the eligible products are fully discounted
     class BuyOneGetOneFree < Base
-
       private
 
       def calculate

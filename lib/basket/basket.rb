@@ -1,4 +1,5 @@
 module Basket
+  # Coordinate basket items with product catalog, delivery charges and discounts
   class Basket
     attr_reader :catalog, :delivery, :offers, :content
 
@@ -14,8 +15,7 @@ module Basket
     end
 
     def total
-      sub_total = @content.total_price
-      sub_total = sub_total - @offers.discount(@content.items)
+      sub_total = @content.total_price - @offers.discount(@content.items)
       (sub_total + @delivery.cost(sub_total)).round(2)
     end
   end

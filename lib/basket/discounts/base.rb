@@ -1,5 +1,6 @@
 module Basket
   module Discounts
+    # Parent class for common discount behaviour. Must be subclassed to implement calculation.
     class Base
       attr_reader :product_code
 
@@ -11,13 +12,13 @@ module Basket
         @matches = eligible_products(products)
         return 0.0 if @matches.empty?
 
-        return calculate.round(2)
+        calculate.round(2)
       end
 
       private
 
       def eligible_products(products)
-        products.select {|product| product.code == @product_code }
+        products.select { |product| product.code == @product_code }
       end
 
       def calculate

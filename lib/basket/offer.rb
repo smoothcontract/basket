@@ -1,4 +1,5 @@
 module Basket
+  # Stores details of one offer and builds appropriate discount object
   class Offer
     attr_reader :code, :product, :type
 

@@ -1,6 +1,7 @@
 require 'yaml'
 
 module Basket
+  # Load product details from YAML file
   class Catalog
     attr_reader :products
 
@@ -9,13 +10,13 @@ module Basket
     end
 
     def [](code)
-      @products.find {|product| product.code == code.to_sym }
+      @products.find { |product| product.code == code.to_sym }
     end
 
     private
 
     def parse_catalog
-      products = YAML.load(File.read(filename))
+      products = YAML.safe_load(File.read(filename))
 
       products.map do |product_attrs|
         Product.new(

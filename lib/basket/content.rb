@@ -1,4 +1,5 @@
 module Basket
+  # Looks after items in basket, adding them from product catalog
   class Content
     attr_reader :items
 
@@ -9,7 +10,7 @@ module Basket
 
     def add_items(*item_codes)
       item_codes = [item_codes] unless item_codes.is_a? Array
-      item_codes.each {|item_code| add_item(item_code) }
+      item_codes.each { |item_code| add_item(item_code) }
     end
 
     def add_item(item_code)

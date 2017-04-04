@@ -1,6 +1,7 @@
 require 'yaml'
 
 module Basket
+  # Load delivery charges from YAML file
   class Delivery
     attr_reader :charges
 
@@ -9,21 +10,21 @@ module Basket
     end
 
     def cost(order_value)
-      charge = @charges.find {|charge| charge.cost if order_value >= charge.minimum }
-      raise InvalidDeliveryCharge unless charge
+      lowest_charge = @charges.find { |charge| charge.cost if order_value >= charge.minimum }
+      raise InvalidDeliveryCharge unless lowest_charge
 
-      charge.cost
+      lowest_charge.cost
     end
 
     private
 
     def parse_charges
-      charges = YAML.load(File.read(filename))
+      charges = YAML.safe_load(File.read(filename))
 
       charges.map do |charge_attrs|
         DeliveryCharge.new(
-          name: charge_attrs.first, 
-          minimum: charge_attrs.last['minimum'], 
+          name: charge_attrs.first,
+          minimum: charge_attrs.last['minimum'],
           cost: charge_attrs.last['cost']
         )
       end

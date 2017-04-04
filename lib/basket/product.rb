@@ -1,4 +1,5 @@
 module Basket
+  # Simple PORO to store details of a single product
   class Product
     attr_reader :code, :price, :name
 

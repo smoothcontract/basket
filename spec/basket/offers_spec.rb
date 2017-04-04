@@ -32,7 +32,7 @@ describe Basket::Offers do
 
     subject { offers.discount(products) }
 
-    #TODO can probably move some of these to individual unit tests of the discount classes
+    # TODO: can probably move some of these to individual unit tests of the discount classes
 
     context 'for non discounted products' do
       let(:products) { [other_product, other_product] }

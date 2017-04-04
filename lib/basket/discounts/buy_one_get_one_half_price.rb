@@ -1,5 +1,6 @@
 module Basket
   module Discounts
+    # Half of the eligible products are discounted 50%
     class BuyOneGetOneHalfPrice < Base
       private
 

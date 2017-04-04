@@ -1,6 +1,7 @@
 require 'yaml'
 
 module Basket
+  # Load offer details from YAML file
   class Offers
     attr_reader :offers
 
@@ -9,13 +10,13 @@ module Basket
     end
 
     def discount(products)
-      @offers.sum {|offer| offer.discount(products) }.round(2)
+      @offers.sum { |offer| offer.discount(products) }.round(2)
     end
 
     private
 
     def parse_offers
-      offers = YAML.load(File.read(filename))
+      offers = YAML.safe_load(File.read(filename))
 
       offers.map do |offer_attrs|
         Offer.new(
