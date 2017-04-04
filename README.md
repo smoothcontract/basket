@@ -37,12 +37,12 @@ automatically detect and use the correct version of Ruby. Then simply run `bundl
 
 ## Running tests
 
-Once gems are installed run `bundle exec rspec`. This will output test coverage information to the `coverage` folder (~99%)
+Once gems are installed run `bundle exec rspec`. This will output test coverage information to the `coverage` folder (currently ~99%)
 
 
 ## Enhancements
 
-* More complicated discount rules would like need extra metadata to define the discount structure
+* More complicated discount rules would likely need extra metadata to define the discount structure
 * Add support for discounting combinations of products - currently only allows one product code per discount
 * Handling of multiple discounts for the same product could be better - currently applies all matching discounts, it's
   more likely that products should only be eligible for one discount.
