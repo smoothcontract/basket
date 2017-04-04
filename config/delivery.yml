@@ -1,0 +1,9 @@
+free:
+  minimum: 90.0
+  cost: 0.0
+reduced:
+  minimum: 50.0
+  cost: 2.95
+standard:
+  minimum: 0.0
+  cost: 4.95
