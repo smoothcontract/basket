@@ -1,0 +1,7 @@
+buy_one_pair_jeans_get_another_half_price:
+  product_code: j01
+  offer_type: BuyOneGetOneHalfPrice
+
+buy_one_tie_get_another_one_free:
+  product_code: t01
+  offer_type: BuyOneGetOneFree

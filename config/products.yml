@@ -7,3 +7,6 @@ b01:
 s01:
   name: Socks
   price: 7.95
+t01:
+  name: Tie
+  price: 4.95
