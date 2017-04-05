@@ -1,5 +1,5 @@
 module Basket
-  # Simgple PORO to store details of a single delivery charge
+  # Simple PORO to store details of a single delivery charge
   class DeliveryCharge
     attr_reader :name, :minimum, :cost
 
